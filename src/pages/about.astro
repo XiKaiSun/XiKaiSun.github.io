@@ -1,12 +1,11 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 import Content from "../components/Content.astro";
+const pageTab = "关于"
 ---
 
-<BaseLayout>
-    <div class="content">
+<BaseLayout pageTab={pageTab}>
        <Content>
-        <h1>本博客基于astro搭建，部署在githubPage中</h1>
+        <h1>本博客基于astro搭建, 部署在githubPage中</h1>
        </Content>
-    </div>
 </BaseLayout>

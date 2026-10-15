@@ -3,15 +3,21 @@ import BaseLayout from "../components/BaseLayout.astro";
 
 import Content from "../components/Content.astro";
 import ArticleList from "../components/ArticleList.astro";
+import "./../style/md.css"
 const pageTab = "文章";
 const frontData = Astro.props;
 ---
 <style>
     .article-area{
-        width: 500px;
-    }
-</style>
+    width: 600px;
+}
 
+.article-area img{
+    height:300px;
+    width: 300px;
+}
+
+</style>
 <BaseLayout pageTab={pageTab}>
     <Content>
         <div class="article-area">

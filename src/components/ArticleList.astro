@@ -1,30 +1,65 @@
 ---
 import { isFrontmatterValid } from "astro/markdown";
-import dayjs from "dayjs"
-let posts = Object.values(import.meta.glob('./../pages/article/*.md', { eager: true }));
+import dayjs from "dayjs";
+import path from "path";
 
-posts.sort((a,b) => dayjs(a.frontmatter.pubDate).valueOf() - dayjs(b.frontmatter.pubDate)).valueOf()
+let posts = Object.values(
+    import.meta.glob("./../pages/article/**/*.md", { eager: true }),
+);
+
+posts.sort(
+    (a, b) =>
+        dayjs(a.frontmatter.pubDate).valueOf() -
+        dayjs(b.frontmatter.pubDate).valueOf(),
+);
 ---
 
 <style>
-    .article-list ul{
+    .article-list{
+        margin: 30px;
+    }
+    .article-list ul {
         list-style: none;
+        display: flex;
+        flex-direction: column;
     }
 </style>
 <div class="article-list">
+    <p>文章列表</p>
+    <p>技术:</p>
     <ul>
         {
             posts.map((article) => {
-                console.log(article)
-                const articleName = article.frontmatter.title;
-                console.log(articleName)
-                return(
-                <li>
-                    <a href={"/article/"+ articleName}>
-                        {articleName}
-                    </a>
-                </li>
-            )})
+                if (article.frontmatter.categorize.toLowerCase() === "it") {
+                    console.log(article);
+                    const articleName = article.frontmatter.title;
+                    const articleUrl = articleName;
+                    console.log(articleName);
+                    return (
+                        <li>
+                            <a href={"/article/it/" + articleUrl}>{articleName}</a>
+                        </li>
+                    );
+                }
+            })
         }
-    </ul>
+        </ul>
+        <p>生活:</p>
+        <ul>
+            {
+                posts.map((article) => {
+                    if (article.frontmatter.categorize.toLowerCase() === "life") {
+                        console.log(article);
+                        const articleName = article.frontmatter.title;
+                        const articleUrl = articleName;
+                        console.log(articleName);
+                        return (
+                            <li>
+                                <a href={"/article/life/" + articleUrl}>{articleName}</a>
+                            </li>
+                        );
+                    }
+                })
+            }
+        </ul>
 </div>

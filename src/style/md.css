@@ -1,0 +1,12 @@
+.article-area{
+    width: 500px;
+}
+
+.article-area img{
+    height:300px;
+    width: 300px;
+}
+
+.article-area h1{
+    text-align: center;
+}

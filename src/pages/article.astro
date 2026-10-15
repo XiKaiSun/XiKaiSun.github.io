@@ -1,8 +1,12 @@
 ---
-import BaseLayout from "./../components/BaseLayout.astro"
-import ArticleList from "./../components/ArticleList.astro"
-const pageTab = "文章"
+import BaseLayout from "./../components/BaseLayout.astro";
+import ArticleList from "./../components/ArticleList.astro";
+import Content from "../components/Content.astro";
+const pageTab = "文章";
 ---
+
 <BaseLayout pageTab={pageTab}>
-    <ArticleList/>
+    <Content>
+        <ArticleList />
+    </Content>
 </BaseLayout>
