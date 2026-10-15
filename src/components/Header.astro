@@ -1,0 +1,16 @@
+---
+import Navigation from "./Navigation.astro";
+import Menu from "./Menu.astro";
+const {pageTab} = Astro.props
+---
+
+<style>
+    .header {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<header>
+    <Menu />
+    <Navigation selectedPage={pageTab}/>
+</header>

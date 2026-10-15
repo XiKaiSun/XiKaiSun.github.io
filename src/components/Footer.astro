@@ -1,0 +1,30 @@
+---
+import Social from "./Social.astro";
+const socialMedias = [{ platform: "github", userSource: "XiKaiSun" },
+{ platform: "linkedin", userSource: "in/xikai-sun-4172751b2" },
+
+];
+const linkedin = "https://www.linkedin.com/in/xikai-sun-4172751b2/";
+---
+
+<style>
+    .footer {
+        position: fixed;
+        display: flex;
+        bottom: 100px;
+        width: 100%;
+        justify-content: center;
+    }
+    .footer ul{
+        list-style: none;
+        display: flex;
+    }
+    .footer ul li{
+        margin: 10px;
+    }
+</style>
+<div class="footer">
+    <ul>
+        {socialMedias.map(item =><li> <Social platform={item.platform} username={item.userSource}/></li>)}
+    </ul>
+</div>

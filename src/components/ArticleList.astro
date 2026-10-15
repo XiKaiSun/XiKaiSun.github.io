@@ -1,0 +1,30 @@
+---
+import { isFrontmatterValid } from "astro/markdown";
+import dayjs from "dayjs"
+let posts = Object.values(import.meta.glob('./../pages/article/*.md', { eager: true }));
+
+posts.sort((a,b) => dayjs(a.frontmatter.pubDate).valueOf() - dayjs(b.frontmatter.pubDate)).valueOf()
+---
+
+<style>
+    .article-list ul{
+        list-style: none;
+    }
+</style>
+<div class="article-list">
+    <ul>
+        {
+            posts.map((article) => {
+                console.log(article)
+                const articleName = article.frontmatter.title;
+                console.log(articleName)
+                return(
+                <li>
+                    <a href={"/article/"+ articleName}>
+                        {articleName}
+                    </a>
+                </li>
+            )})
+        }
+    </ul>
+</div>

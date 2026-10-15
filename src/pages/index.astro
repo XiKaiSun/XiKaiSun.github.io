@@ -1,19 +1,32 @@
 ---
-import Navigation from './../components/Navigation.astro';
-import "./../style/style.css"
+import BaseLayout from "../components/BaseLayout.astro";
+import Content from "../components/Content.astro";
+//import profilePhoto from "./../img/images.jpeg";
+import { Image } from "astro:assets";
+const pageTab = "首页";
+const title = "欢迎来到我的博客主页";
+const content = "hi, 我是kevin Sun, 一名普通程序员。";
 ---
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<Navigation/>
-		<h1>Astro</h1>
-		<h1>My site</h1>
-	</body>
-</html>
+
+<style>
+	.content {
+		display: flex;
+		justify-content: center;
+	}
+</style>
+<BaseLayout pageTab={pageTab}>
+	<Content>
+		<div class="introduction">
+			<h1>{title}</h1>
+			<p>{content}</p>
+		</div>
+		<div>
+			<Image
+				src="/img/images.jpeg"
+				alt="profilePhoto"
+				width="300"
+				height="300"
+			/>
+		</div>
+	</Content>
+</BaseLayout>

@@ -1,19 +1,8 @@
 ---
-import Navigation from './../components/Navigation.astro';
-import "./../style/style.css"
+import BaseLayout from "./../components/BaseLayout.astro"
+import ArticleList from "./../components/ArticleList.astro"
+const pageTab = "文章"
 ---
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <Navigation/>
-        <div class="article">
-            <h1>我的第一篇文章</h1>
-            <p>content</p>
-        </div>
-    </body>
-</html>
+<BaseLayout pageTab={pageTab}>
+    <ArticleList/>
+</BaseLayout>

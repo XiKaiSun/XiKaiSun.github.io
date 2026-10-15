@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+
+import Content from "../components/Content.astro";
+import ArticleList from "../components/ArticleList.astro";
+const pageTab = "文章";
+const frontData = Astro.props;
+---
+<style>
+    .article-area{
+        width: 500px;
+    }
+</style>
+
+<BaseLayout pageTab={pageTab}>
+    <Content>
+        <div class="article-area">
+            <slot />
+        </div>
+        <div>
+            <ArticleList />
+        </div>
+    </Content>
+</BaseLayout>
