@@ -5,5 +5,8 @@ import "./../style/style.css";
 <button class="menu"> Menu </button>
 
 <script>
-    
+    document.querySelector(".menu")?.addEventListener("click", function (e) {
+        const nav = document.querySelector("header nav");
+        nav.style.display = nav.style.display === "none" ? "block" : "none";
+    });
 </script>
