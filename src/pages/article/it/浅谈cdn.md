@@ -3,6 +3,7 @@ title: 浅谈cdn
 pubDate: 2022-10-11
 categorize: it
 layout: ./../../../layouts/MarkdownPostLayout.astro
+articleId: 1
 ---
 # 浅谈cdn
 

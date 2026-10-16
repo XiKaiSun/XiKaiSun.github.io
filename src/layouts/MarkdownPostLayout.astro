@@ -3,28 +3,66 @@ import BaseLayout from "../components/BaseLayout.astro";
 
 import Content from "../components/Content.astro";
 import ArticleList from "../components/ArticleList.astro";
-import "./../style/md.css"
+import dayjs from "dayjs";
+import "./../style/md.css";
+import path from "path"
 const pageTab = "文章";
-const frontData = Astro.props;
+const articlefrontmatter = Astro.props.frontmatter;
+const articleId = articlefrontmatter.articleId;
+let posts = Object.values(
+    import.meta.glob("./../pages/article/**/*.md", { eager: true }),
+);
+
+posts.sort(
+    (a, b) =>
+        dayjs(a.frontmatter.pubDate).valueOf() -
+        dayjs(b.frontmatter.pubDate).valueOf(),
+);
+
+const CurrentArticleIndex = posts.findIndex((article) => article.frontmatter.articleId === articleId);
+const isFirstArticle = (CurrentArticleIndex === 0)
+const isLastArticle = (CurrentArticleIndex === posts.length - 1)
+
+let preArticle = null;
+let preArticleUrl = null;
+if(!isFirstArticle){
+    preArticle = posts[CurrentArticleIndex - 1].frontmatter.title
+    preArticleUrl = path.join(posts[CurrentArticleIndex - 1].frontmatter.categorize.toLowerCase(), posts[CurrentArticleIndex -1].frontmatter.title)
+}
+let nextArticle = null;
+let nextArticleUrl = null;
+if(!isLastArticle){
+    nextArticle = posts[CurrentArticleIndex + 1].frontmatter.title
+    nextArticleUrl = path.join(posts[CurrentArticleIndex + 1].frontmatter.categorize.toLowerCase(), posts[CurrentArticleIndex + 1].frontmatter.title)
+}
+
+
 ---
+
 <style>
-    .article-area{
-    width: 600px;
-}
+    .article-area {
+        width: 600px;
+    }
 
-.article-area img{
-    height:300px;
-    width: 300px;
-}
-
+    .article-area img {
+        height: 300px;
+        width: 300px;
+    }
+    li.hide{
+        display: none;
+    }
 </style>
 <BaseLayout pageTab={pageTab}>
-    <Content>
+    <div>
+        <ul>
+            <li class={isFirstArticle? "hide" : ""}><a href={`/article/${preArticleUrl}`}>上一篇: {preArticle}</a></li>
+            <li class={isLastArticle? "hide" : ""}><a href={`/article/${nextArticleUrl}`}>下一篇: {nextArticle}</a></li>
+        </ul>
         <div class="article-area">
             <slot />
         </div>
-        <div>
-            <ArticleList />
-        </div>
-    </Content>
+    </div>
+    <div>
+        <ArticleList />
+    </div>
 </BaseLayout>

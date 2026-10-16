@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 import Content from "../components/Content.astro";
-//import profilePhoto from "./../img/images.jpeg";
+import profilePhoto from "./../img/profilePhoto.jpg";
 import { Image } from "astro:assets";
 const pageTab = "首页";
-const title = "欢迎来到我的博客主页";
+const title = "欢迎来到我的博客";
+console.log(profilePhoto)
 const content = "hi, 我是kevin Sun, 一名普通程序员。";
 ---
 
@@ -15,18 +16,11 @@ const content = "hi, 我是kevin Sun, 一名普通程序员。";
 	}
 </style>
 <BaseLayout pageTab={pageTab}>
-	<Content>
-		<div class="introduction">
-			<h1>{title}</h1>
-			<p>{content}</p>
-		</div>
-		<div>
-			<Image
-				src="/img/images.jpeg"
-				alt="profilePhoto"
-				width="300"
-				height="300"
-			/>
-		</div>
-	</Content>
+	<div class="introduction">
+		<h1>{title}</h1>
+		<p>{content}</p>
+	</div>
+	<div>
+		<Image src={profilePhoto} alt="profilePhoto" width="300" height="300" />
+	</div>
 </BaseLayout>

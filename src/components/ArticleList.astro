@@ -31,10 +31,8 @@ posts.sort(
         {
             posts.map((article) => {
                 if (article.frontmatter.categorize.toLowerCase() === "it") {
-                    console.log(article);
                     const articleName = article.frontmatter.title;
                     const articleUrl = articleName;
-                    console.log(articleName);
                     return (
                         <li>
                             <a href={"/article/it/" + articleUrl}>{articleName}</a>
@@ -49,10 +47,8 @@ posts.sort(
             {
                 posts.map((article) => {
                     if (article.frontmatter.categorize.toLowerCase() === "life") {
-                        console.log(article);
                         const articleName = article.frontmatter.title;
                         const articleUrl = articleName;
-                        console.log(articleName);
                         return (
                             <li>
                                 <a href={"/article/life/" + articleUrl}>{articleName}</a>

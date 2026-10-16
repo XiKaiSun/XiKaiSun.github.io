@@ -3,6 +3,7 @@ import Navigation from "./../components/Navigation.astro";
 import Footer from "./../components/Footer.astro";
 import "./../style/style.css";
 import Header from "../components/Header.astro";
+import Content from "./Content.astro";
 const { pageTab } = Astro.props;
 ---
 
@@ -15,9 +16,14 @@ const { pageTab } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>Astro</title>
     </head>
+    <style>
+        body {
+            background-color: rgb(215, 208, 208);
+        }
+    </style>
     <body>
         <Header pageTab={pageTab} />
-        <slot />
+        <Content><slot /></Content>
         <Footer />
     </body>
     <script>
