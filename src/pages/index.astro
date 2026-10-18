@@ -1,26 +1,40 @@
 ---
-import BaseLayout from "../components/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Content from "../components/Content.astro";
+import ArticleList from "./../components/ArticleList.astro"
 import profilePhoto from "./../img/profilePhoto.jpg";
+import Block from "../components/Block.astro";
 import { Image } from "astro:assets";
+import ArticleList from "../components/ArticleList.astro";
 const pageTab = "首页";
 const title = "欢迎来到我的博客";
-console.log(profilePhoto)
+console.log(profilePhoto);
 const content = "hi, 我是kevin Sun, 一名普通程序员。";
 ---
 
 <style>
-	.content {
+	.introduction {
 		display: flex;
-		justify-content: center;
+		width: 100%;
 	}
 </style>
+
 <BaseLayout pageTab={pageTab}>
-	<div class="introduction">
-		<h1>{title}</h1>
-		<p>{content}</p>
-	</div>
-	<div>
-		<Image src={profilePhoto} alt="profilePhoto" width="300" height="300" />
-	</div>
+	<Block index="1">
+		<div class="introduction">
+			<div>
+				<h1>{title}</h1>
+				<p>{content}</p>
+			</div>
+			<Image
+				src={profilePhoto}
+				alt="profilePhoto"
+				width="150"
+				height="150"
+			/>
+		</div>
+	</Block>
+	<Block index="2" > 
+		<h2>Pending....</h2>
+	</Block>
 </BaseLayout>

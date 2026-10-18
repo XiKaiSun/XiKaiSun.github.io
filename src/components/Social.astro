@@ -1,7 +1,16 @@
 ---
-const {platform, username} = Astro.props;
+const { platform, username } = Astro.props;
 ---
 
-<style>
-</style>
-<a href=`https://www.${platform}.com/${username}` target="_blank">{platform}</a>
+<style></style>
+{
+    platform !== "email" ? (
+        <a href={`https://www.${platform}.com/${username}`} target="_blank">
+            {platform}
+        </a>
+    ) : (
+        <a href={`mailto:${username}?subject=Hi XiKai`}>
+            {platform}
+        </a>
+    )
+}

@@ -1,10 +1,12 @@
 ---
-import BaseLayout from "./../components/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleList from "./../components/ArticleList.astro";
-import Content from "../components/Content.astro";
+import "./../style/style.css"
 const pageTab = "文章";
 ---
 
 <BaseLayout pageTab={pageTab}>
+    <div class="flex-c-center">
         <ArticleList />
+    </div>
 </BaseLayout>

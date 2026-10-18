@@ -1,0 +1,32 @@
+.no-text-decoration {
+    text-decoration: none;
+}
+
+.block {
+    border: red
+}
+
+.flex-c-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-r-center {
+    display: flex;
+    justify-content: center;
+
+}
+
+.flex-rc-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}

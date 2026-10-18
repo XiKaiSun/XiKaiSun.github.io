@@ -1,7 +1,8 @@
 ---
 import Social from "./Social.astro";
-const socialMedias = [{ platform: "github", userSource: "XiKaiSun" },
-{ platform: "linkedin", userSource: "in/xikai-sun-4172751b2" },
+const socialMedias = [{ platform: "Github", userSource: "XiKaiSun" },
+{ platform: "Linkedin", userSource: "in/xikai-sun-4172751b2" },
+{platform:"Email", userSource:"hello@xikaisun.com"}
 
 ];
 const linkedin = "https://www.linkedin.com/in/xikai-sun-4172751b2/";
@@ -19,9 +20,7 @@ const linkedin = "https://www.linkedin.com/in/xikai-sun-4172751b2/";
     .footer ul{
         list-style: none;
         display: flex;
-    }
-    .footer ul li{
-        margin: 10px;
+        gap: 25px;
     }
 </style>
 <div class="footer">

@@ -1,18 +1,22 @@
 ---
-import BaseLayout from "../components/BaseLayout.astro";
+import BaseLayout from "./BaseLayout.astro";
 
 import Content from "../components/Content.astro";
 import ArticleList from "../components/ArticleList.astro";
 import dayjs from "dayjs";
 import "./../style/md.css";
-import path from "path"
+import "./../style/style.css";
+//指定导航页选择标签
 const pageTab = "文章";
+//获取md 的frontmatter内容
 const articlefrontmatter = Astro.props.frontmatter;
 const articleId = articlefrontmatter.articleId;
+
+//获取所有md
 let posts = Object.values(
     import.meta.glob("./../pages/article/**/*.md", { eager: true }),
 );
-
+//按时间排序
 posts.sort(
     (a, b) =>
         dayjs(a.frontmatter.pubDate).valueOf() -
@@ -24,17 +28,16 @@ const isFirstArticle = (CurrentArticleIndex === 0)
 const isLastArticle = (CurrentArticleIndex === posts.length - 1)
 
 let preArticle = null;
-let preArticleUrl = null;
 if(!isFirstArticle){
-    preArticle = posts[CurrentArticleIndex - 1].frontmatter.title
-    preArticleUrl = path.join(posts[CurrentArticleIndex - 1].frontmatter.categorize.toLowerCase(), posts[CurrentArticleIndex -1].frontmatter.title)
+    preArticle = posts[CurrentArticleIndex - 1]
 }
 let nextArticle = null;
-let nextArticleUrl = null;
 if(!isLastArticle){
-    nextArticle = posts[CurrentArticleIndex + 1].frontmatter.title
-    nextArticleUrl = path.join(posts[CurrentArticleIndex + 1].frontmatter.categorize.toLowerCase(), posts[CurrentArticleIndex + 1].frontmatter.title)
+    nextArticle = posts[CurrentArticleIndex + 1]
+
 }
+console.log("test info:")
+console.log(nextArticle)
 
 
 ---
@@ -48,21 +51,22 @@ if(!isLastArticle){
         height: 300px;
         width: 300px;
     }
-    li.hide{
-        display: none;
-    }
 </style>
 <BaseLayout pageTab={pageTab}>
-    <div>
-        <ul>
-            <li class={isFirstArticle? "hide" : ""}><a href={`/article/${preArticleUrl}`}>上一篇: {preArticle}</a></li>
-            <li class={isLastArticle? "hide" : ""}><a href={`/article/${nextArticleUrl}`}>下一篇: {nextArticle}</a></li>
-        </ul>
-        <div class="article-area">
-            <slot />
+    <div class="flex-r-center">
+        <div>
+            <div>
+                <ul>
+                    {isFirstArticle? "" : <li ><a href={ preArticle.url }>上一篇: {preArticle.frontmatter.title}</a></li>}
+                    {isLastArticle? "" : <li ><a href={nextArticle.url}>下一篇: {nextArticle.frontmatter.title}</a></li>}
+                </ul>
+                <div class="article-area">
+                    <slot />
+                </div>
+            </div>
         </div>
-    </div>
-    <div>
-        <ArticleList />
+        <div>
+            <ArticleList />
+        </div>
     </div>
 </BaseLayout>
