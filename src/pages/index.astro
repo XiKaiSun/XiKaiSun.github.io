@@ -1,15 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Content from "../components/Content.astro";
-import ArticleList from "./../components/ArticleList.astro"
+import ArticleList from "./../components/ArticleList.astro";
 import profilePhoto from "./../img/profilePhoto.jpg";
 import Block from "../components/Block.astro";
 import { Image } from "astro:assets";
 import ArticleList from "../components/ArticleList.astro";
+import dayjs from "dayjs";
+import "./../style/style.css"
 const pageTab = "首页";
 const title = "欢迎来到我的博客";
-console.log(profilePhoto);
-const content = "hi, 我是kevin Sun, 一名普通程序员。";
+const content = "hi, 我是kevin Sun, 一名普通程序员。目前常住于澳大利亚, 平常爱好健身，偶尔会打打游戏。";
+
+let posts = Object.values(
+    import.meta.glob("./../pages/article/**/*.md", { eager: true }),
+);
+
+posts.sort(
+    (a, b) =>
+        dayjs(a.frontmatter.pubDate).valueOf() -
+        dayjs(b.frontmatter.pubDate).valueOf(),
+);
+console.log(posts[0].frontmatter)
 ---
 
 <style>
@@ -17,24 +29,37 @@ const content = "hi, 我是kevin Sun, 一名普通程序员。";
 		display: flex;
 		width: 100%;
 	}
+	.container{
+		display: flex;
+		flex-direction: column;
+	}
+	.profile-photo{
+		margin-left: auto;
+	}
 </style>
 
 <BaseLayout pageTab={pageTab}>
-	<Block index="1">
-		<div class="introduction">
-			<div>
-				<h1>{title}</h1>
-				<p>{content}</p>
-			</div>
-			<Image
-				src={profilePhoto}
-				alt="profilePhoto"
-				width="150"
-				height="150"
-			/>
-		</div>
-	</Block>
-	<Block index="2" > 
-		<h2>Pending....</h2>
-	</Block>
+			<Block title="介绍">
+				<div class="introduction">
+					<div>
+						<h1>{title}</h1>
+						<p class="intro-font">{content}</p>
+					</div>
+					<div class="profile-photo">
+						<Image
+						src={profilePhoto}
+						alt="profilePhoto"
+						width="200"
+						height="250"
+					/>
+					</div>
+				</div>
+			</Block>
+			<Block title="文章">
+				<div>
+					<ul>
+						{posts.map(post => <li>日期:{dayjs(post.frontmatter.pubDate).format('YYYY-MM-DD')} 标题: {post.frontmatter.title}</li>)}
+					</ul>
+				</div>
+			</Block>
 </BaseLayout>

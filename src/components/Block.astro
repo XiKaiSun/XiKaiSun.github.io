@@ -1,11 +1,10 @@
 ---
-const { index } = Astro.props;
-console.log(index);
+const {title} = Astro.props;
 ---
 
 
 
 <div class="block">
-    <p>{index}----------------------------------------------------</p>
+    <p>{title}. . .</p>
     <slot />
 </div>
