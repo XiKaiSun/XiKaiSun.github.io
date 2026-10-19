@@ -7,15 +7,14 @@ let posts = Object.values(
 
 posts.sort(
     (a, b) =>
-        dayjs(a.frontmatter.pubDate).valueOf() -
-        dayjs(b.frontmatter.pubDate).valueOf(),
+        dayjs(b.frontmatter.pubDate).valueOf() - dayjs(a.frontmatter.pubDate).valueOf()
 );
 ---
 
 <style>
     .article-list {
         margin-left: 30px;
-        min-width: 200px
+        min-width: 200px;
     }
     .article-list ul {
         list-style: none;
@@ -24,7 +23,7 @@ posts.sort(
     }
 </style>
 <div class="article-list">
-    <p>技术:</p>
+    <a href="/tags/it">技术:</a>
     <ul>
         {
             posts.map((article) => {
@@ -39,7 +38,7 @@ posts.sort(
             })
         }
     </ul>
-    <p>生活:</p>
+    <a href="/tags/life">生活</a>
     <ul>
         {
             posts.map((article) => {
@@ -47,9 +46,7 @@ posts.sort(
                     const articleTitle = article.frontmatter.title;
                     return (
                         <li>
-                            <a href={article.url}>
-                                {articleTitle}
-                            </a>
+                            <a href={article.url}>{articleTitle}</a>
                         </li>
                     );
                 }

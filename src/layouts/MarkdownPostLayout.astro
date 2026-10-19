@@ -19,8 +19,7 @@ let posts = Object.values(
 //按时间排序
 posts.sort(
     (a, b) =>
-        dayjs(a.frontmatter.pubDate).valueOf() -
-        dayjs(b.frontmatter.pubDate).valueOf(),
+        dayjs(b.frontmatter.pubDate).valueOf() - dayjs(a.frontmatter.pubDate).valueOf()
 );
 
 const CurrentArticleIndex = posts.findIndex((article) => article.frontmatter.articleId === articleId);
@@ -42,17 +41,7 @@ console.log(nextArticle)
 
 ---
 
-<style>
-    .article-area {
-       
-    }
-
-    .article-area img {
-        height: 300px;
-        width: 300px;
-    }
-</style>
-<BaseLayout pageTab={pageTab}>
+<BaseLayout pageTab={pageTab} pageTitle={articlefrontmatter.title}>
     <div class="flex-r-center">
         <div>
             <div>

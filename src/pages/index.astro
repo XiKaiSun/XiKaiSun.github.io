@@ -18,8 +18,7 @@ let posts = Object.values(
 
 posts.sort(
     (a, b) =>
-        dayjs(a.frontmatter.pubDate).valueOf() -
-        dayjs(b.frontmatter.pubDate).valueOf(),
+        dayjs(b.frontmatter.pubDate).valueOf() - dayjs(a.frontmatter.pubDate).valueOf()
 );
 console.log(posts[0].frontmatter)
 ---
@@ -55,10 +54,10 @@ console.log(posts[0].frontmatter)
 					</div>
 				</div>
 			</Block>
-			<Block title="文章">
+			<Block title="最新文章">
 				<div>
 					<ul>
-						{posts.map(post => <li>日期:{dayjs(post.frontmatter.pubDate).format('YYYY-MM-DD')} 标题: {post.frontmatter.title}</li>)}
+						{posts.map(post => <li>日期:{dayjs(post.frontmatter.pubDate).format('YYYY-MM-DD')}  <a href={post.url}>{post.frontmatter.title}</a></li>)}
 					</ul>
 				</div>
 			</Block>
