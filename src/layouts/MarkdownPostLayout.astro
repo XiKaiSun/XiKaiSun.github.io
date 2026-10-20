@@ -19,43 +19,89 @@ let posts = Object.values(
 //按时间排序
 posts.sort(
     (a, b) =>
-        dayjs(b.frontmatter.pubDate).valueOf() - dayjs(a.frontmatter.pubDate).valueOf()
+        dayjs(b.frontmatter.pubDate).valueOf() -
+        dayjs(a.frontmatter.pubDate).valueOf(),
 );
 
-const CurrentArticleIndex = posts.findIndex((article) => article.frontmatter.articleId === articleId);
-const isFirstArticle = (CurrentArticleIndex === 0)
-const isLastArticle = (CurrentArticleIndex === posts.length - 1)
+const CurrentArticleIndex = posts.findIndex(
+    (article) => article.frontmatter.articleId === articleId,
+);
+const isFirstArticle = CurrentArticleIndex === 0;
+const isLastArticle = CurrentArticleIndex === posts.length - 1;
 
 let preArticle = null;
-if(!isFirstArticle){
-    preArticle = posts[CurrentArticleIndex - 1]
+if (!isFirstArticle) {
+    preArticle = posts[CurrentArticleIndex - 1];
 }
 let nextArticle = null;
-if(!isLastArticle){
-    nextArticle = posts[CurrentArticleIndex + 1]
-
+if (!isLastArticle) {
+    nextArticle = posts[CurrentArticleIndex + 1];
 }
-console.log("test info:")
-console.log(nextArticle)
-
-
+console.log("test info:");
+console.log(nextArticle);
 ---
 
+<style>
+    .tags {
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .tags ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        margin: 0;
+    }
+    
+</style>
 <BaseLayout pageTab={pageTab} pageTitle={articlefrontmatter.title}>
     <div class="flex-r-center">
-        <div>
-            <div>
-                <ul>
-                    {isFirstArticle? "" : <li ><a href={ preArticle.url }>上一篇: {preArticle.frontmatter.title}</a></li>}
-                    {isLastArticle? "" : <li ><a href={nextArticle.url}>下一篇: {nextArticle.frontmatter.title}</a></li>}
-                </ul>
-                <div class="article-area">
-                    <slot />
+        <div class="article-info">
+            <ul>
+                {
+                    isFirstArticle ? (
+                        ""
+                    ) : (
+                        <li>
+                            <a href={preArticle.url}>
+                                上一篇: {preArticle.frontmatter.title}
+                            </a>
+                        </li>
+                    )
+                }
+                {
+                    isLastArticle ? (
+                        ""
+                    ) : (
+                        <li>
+                            <a href={nextArticle.url}>
+                                下一篇: {nextArticle.frontmatter.title}
+                            </a>
+                        </li>
+                    )
+                }
+            </ul>
+            <div class="article-area">
+                <div class="tags">
+                    <div>
+                        <span class="tags-title">标签:</span>
+                    </div>
+
+                    <ul>
+                        {
+                            articlefrontmatter.categorize.map((tag) => (
+                                <li>
+                                    <a href={`/tags/${tag}`}>{tag}</a>
+                                </li>
+                            ))
+                        }
+                    </ul>
                 </div>
+                <slot />
             </div>
         </div>
-        <div>
-            <ArticleList />
-        </div>
+        <ArticleList />
     </div>
 </BaseLayout>

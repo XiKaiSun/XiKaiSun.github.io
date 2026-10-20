@@ -23,11 +23,10 @@ posts.sort(
     }
 </style>
 <div class="article-list">
-    <a href="/tags/it">技术:</a>
+    <span class="article-list-title">全部</span>
     <ul>
         {
             posts.map((article) => {
-                if (article.frontmatter.categorize.toLowerCase() === "it") {
                     const articleTitle = article.frontmatter.title;
                     return (
                         <li>
@@ -35,22 +34,7 @@ posts.sort(
                         </li>
                     );
                 }
-            })
-        }
-    </ul>
-    <a href="/tags/life">生活</a>
-    <ul>
-        {
-            posts.map((article) => {
-                if (article.frontmatter.categorize.toLowerCase() === "life") {
-                    const articleTitle = article.frontmatter.title;
-                    return (
-                        <li>
-                            <a href={article.url}>{articleTitle}</a>
-                        </li>
-                    );
-                }
-            })
+            )
         }
     </ul>
 </div>

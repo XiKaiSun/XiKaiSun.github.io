@@ -1,7 +1,7 @@
 ---
 title: "理解git分支"
 pubDate: 2022-10-09
-categorize: it
+categorize: [it]
 layout: ./../../../layouts/MarkdownPostLayout.astro
 articleId: 2
 ---

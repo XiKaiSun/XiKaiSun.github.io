@@ -1,7 +1,7 @@
 ---
 title: 浅谈cdn
 pubDate: 2022-10-11
-categorize: it
+categorize: [it, learning]
 layout: ./../../../layouts/MarkdownPostLayout.astro
 articleId: 1
 ---

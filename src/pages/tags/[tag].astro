@@ -8,6 +8,7 @@ export async function getStaticPaths() {
     return [
         { params: { tag: "it" }, props: { posts: posts } },
         { params: { tag: "life" }, props: { posts: posts } },
+        { params: { tag: "learning" }, props: { posts: posts } },
     ];
 }
 
@@ -21,7 +22,7 @@ console.log(posts);
     <ul>
         {
             posts.map((post) => {
-                if (post.frontmatter.categorize === tag) {
+                if (post.frontmatter.categorize.includes(tag)) {
                     console.log(post);
                     return (
                         <li>
