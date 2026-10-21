@@ -45,7 +45,6 @@ console.log(nextArticle);
     .tags {
         display: flex;
         flex-direction: row;
-        
     }
     .tags ul {
         list-style: none;
@@ -54,12 +53,17 @@ console.log(nextArticle);
         gap: 30px;
         margin: 0;
     }
-    
+    .pre-next {
+        padding: 0;
+    }
+   .pre-next li::marker {
+        color: rgb(171, 170, 162);
+    }
 </style>
 <BaseLayout pageTab={pageTab} pageTitle={articlefrontmatter.title}>
-    <div class="flex-r-center">
+    <div class="container flex-r-center">
         <div class="article-info">
-            <ul>
+            <ul class="pre-next">
                 {
                     isFirstArticle ? (
                         ""

@@ -3,7 +3,7 @@ import "./../utils/utils.css";
 ---
 
 <style>
-    button{
+    button {
         width: 100%;
         height: 100%;
         min-width: 30px;
@@ -20,7 +20,7 @@ import "./../utils/utils.css";
 </button>
 <script>
     const body = document.querySelector("body");
-    const content = document.querySelector(".content");
+    const nav = document.querySelector("nav ul");
     const modeColor = {
         darkMode: {
             backgroundColor: "black",
@@ -31,25 +31,27 @@ import "./../utils/utils.css";
             textColor: "black",
         },
     };
-    const btn =  document.querySelector(".change-mode")
-        btn?.addEventListener("click", function () {
-            console.log(body?.style.backgroundColor);
-            if (body) {
-                if (body.style.backgroundColor === modeColor.darkMode.backgroundColor) {
-                    body.style.backgroundColor = modeColor.lightMode.backgroundColor;
-                    this.children[0].src = "/darkmode.svg"
+    const btn = document.querySelector(".change-mode");
+    btn?.addEventListener("click", function () {
+        if (body) {
+            if (
+                body.style.backgroundColor ===
+                modeColor.darkMode.backgroundColor
+            ) {
+                body.style.backgroundColor =
+                    modeColor.lightMode.backgroundColor;
+                this.children[0].src = "/darkmode.svg";
+            } else {
+                body.style.backgroundColor = modeColor.darkMode.backgroundColor;
+                this.children[0].src = "/lightmode.svg";
+            }
 
-                } else {
-                    body.style.backgroundColor = modeColor.darkMode.backgroundColor;
-                    this.children[0].src = "/lightmode.svg"
-                }
-            }
-            if (content) {
-                content.style.color =
-                    body.style.backgroundColor ===
-                    modeColor.darkMode.backgroundColor
-                        ? modeColor.darkMode.textColor
-                        : " black";
-            }
-        });
+            body.style.color =
+                body.style.backgroundColor ===
+                modeColor.darkMode.backgroundColor
+                    ? modeColor.darkMode.textColor
+                    : " black";
+        }
+        
+    });
 </script>
